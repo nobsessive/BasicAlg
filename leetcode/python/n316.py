@@ -16,6 +16,10 @@ class Solution:
         stack=[-1]
         in_stack=dict()
         for i in range(n):
+            if v[i] in in_stack:
+                rep[in_stack[v[i]]]=rep[i]
+                v[i]='A'
+                continue
             while v[stack[-1]]>=v[i]:
                 if rep[stack[-1]]==1:
                     c=stack.pop()
@@ -25,9 +29,7 @@ class Solution:
                     break  
             if(v[i] not in in_stack):
                 stack.append(i)
-                in_stack[v[i]]=1
-            else:
-                v[i]='A'
+                in_stack[v[i]]=i
         t=""
         for i in range(n):
             if v[i]!='A':
@@ -37,11 +39,13 @@ class Solution:
 if __name__=="__main__":
     s=Solution() 
     sample=[
+        "bbcaac",
         "abacb",
         "bcabc",
         "cbacdcbc"
         ]
     expected=[
+        "bac"
         "abc",
         "abc",
         "acdb"
