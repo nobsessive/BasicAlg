@@ -119,7 +119,7 @@ class Solution2(object):
         dfs()
         dfs2()
         return ans
-if __name__=="__main__":
+if __name__=="__main__": 
     s=Solution2() 
     sample=[
         [6,[[0,1],[0,2],[2,3],[2,4],[2,5]]],
