@@ -22,7 +22,10 @@ class Solution:
                 inorder(node.right,s)
         s=[]
         inorder(root,s)
-        return s
+        return s 
+    # construct binary tree from list nums[]
+    # nodes in nums are arranged one level by one level i.e. level 0 (root), level 1, ...
+    # only necessary 'null' nodes are included in the list
     def construct_binary_tree(self, nums):
         def insert(nums,cur):
             if cur>=len(nums) or nums[cur]=='null':
