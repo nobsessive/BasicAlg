@@ -26,6 +26,34 @@ class Solution:
     # construct binary tree from list nums[]
     # nodes in nums are arranged one level by one level i.e. level 0 (root), level 1, ...
     # only necessary 'null' nodes are included in the list
+    # child_dir is the direction of the child node, left=0, right=1
+    def construct_binary_tree2(self, nums, child_dir=0,child_cur=[], parent_queue=[]):
+        n=len(nums)
+        if child_cur==n or nums==[]:
+            return None
+        if parent_queue==[] or parent_queue==None: # if parent_queue is empty, it means this is the root node
+            root=TreeNode(nums[0])
+            child_cur=1
+            parent_queue=[root]
+            self.construct_binary_tree2(nums,0,child_cur,parent_queue)
+            return root
+        if child_dir==0:
+            if nums[child_cur]!='null':
+                parent_queue[0].left=TreeNode(nums[child_cur])
+                parent_queue.append(parent_queue[0].left)
+            child_cur+=1
+            self.construct_binary_tree2(nums,1,child_cur,parent_queue)
+        else:
+            if nums[child_cur]!='null':
+                parent_queue[0].right=TreeNode(nums[child_cur])
+                parent_queue.append(parent_queue[0].right)
+            parent_queue.pop(0)
+            child_cur+=1
+            self.construct_binary_tree2(nums,0,child_cur,parent_queue)
+        return
+    # construct binary tree from list nums[]
+    # nodes in nums are arranged one level by one level i.e. level 0 (root), level 1, ...
+    # each node is included even it is a null node
     def construct_binary_tree(self, nums):
         def insert(nums,cur):
             if cur>=len(nums) or nums[cur]=='null':
@@ -58,7 +86,7 @@ if __name__=="__main__":
     correct_flag=True
     wrong_list=[]
     for i,item in enumerate(sample):
-        pre=s.construct_binary_tree(item)
+        pre=s.construct_binary_tree2(item)
 
         c=s.inorderTraversal(pre)
         print(c)
