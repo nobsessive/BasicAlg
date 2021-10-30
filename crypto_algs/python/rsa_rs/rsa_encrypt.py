@@ -10,7 +10,7 @@ from struct import pack
 
 # Crypto is pycryptodome or pycrypto or pycryptodomex 3.10.1
 sha3_cipher= hashlib.sha3_256()
-sha3_cipher.update(str.encode('''some password''')) #------------------------- modify this line
+sha3_cipher.update(str.encode('''SOME PASSWORD''')) #------------------------- modify this line
 seed = sha3_cipher.digest()
 
 class PRNG(object):
